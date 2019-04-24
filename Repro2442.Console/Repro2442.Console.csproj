@@ -2,16 +2,25 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>netcoreapp3.0</TargetFramework>
+		<TargetFramework>netcoreapp2.2</TargetFramework>
 		<DisableMSBuildAssemblyCopyCheck>true</DisableMSBuildAssemblyCopyCheck>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Build" Version="15.6.85" />
+		<PackageReference Include="Microsoft.Build" Version="16.0.461" />
 		<PackageReference Include="Microsoft.Build.Locator" Version="1.2.2" />
-		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.6.85" />
-		<PackageReference Include="Microsoft.Extensions.CommandLineUtils" Version="1.1.0" />
-		<PackageReference Include="NuGet.Versioning" Version="4.0.0" />
+		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.0.461" />
+		<PackageReference Include="Microsoft.Extensions.CommandLineUtils" Version="1.1.1" />
+		<PackageReference Include="NuGet.Versioning" Version="5.0.0" />
 	</ItemGroup>
-	
+
+	<UsingTask TaskName="SimpleTask3.SimpleTask3" AssemblyFile="SimpleTask3\bin\debug\simpletask3.dll" />
+
+	<UsingTask TaskName="MSBuildTask" AssemblyFile="..\Repro2442.MSBuild\bin\Debug\net472\Repro2442.MSBuild.dll" />
+
+	<Target Name="MyTarget" BeforeTargets="BeforeBuild">
+		<MSBuildTask />
+		<Message Text="Here is my Specific Target" Importance="High" />
+	</Target>
+
 </Project>

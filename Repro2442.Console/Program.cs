@@ -8,7 +8,6 @@
 	{
 		private static void Main(string[] args)
 		{
-			////Environment.SetEnvironmentVariable(MSBuildFinder.MSBuildEnvironmentVariableName, MSBuildFinder.Find());
 			RegisterMSBuild();
 			LoadProjectCollection();
 		}
